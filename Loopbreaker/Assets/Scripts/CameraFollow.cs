@@ -1,26 +1,27 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class SmartCameraFollow : MonoBehaviour
 {
     public Transform target;
-    public Vector2 deadZoneSize = new Vector2(2f, 1.5f);
+
+    [Header("Camera Follow Settings")]
+    public float pitchAngle = 45f; // X rotation
     public float smoothSpeed = 5f;
 
+    [Header("Dead Zone Settings")]
+    public Vector2 deadZoneSize = new Vector2(2f, 1.5f);
+
     private Vector3 velocity = Vector3.zero;
-    private Camera cam;
 
-    private void Awake()
-    {
-        cam = Camera.main;
-    }
-
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (!target) return;
 
-        // Project target position into screen plane (camera space)
-        Vector3 cameraRight = cam.transform.right;
-        Vector3 cameraUp = Vector3.Cross(cameraRight, Vector3.forward).normalized;
+        // Get camera's forward, right, and up based on pitch
+        Quaternion cameraRotation = Quaternion.Euler(pitchAngle, 0f, 0f);
+        Vector3 cameraForward = cameraRotation * Vector3.forward;
+        Vector3 cameraRight = Vector3.Cross(Vector3.up, cameraForward).normalized;
+        Vector3 cameraUp = Vector3.Cross(cameraForward, cameraRight).normalized;
 
         Vector3 offset = target.position - transform.position;
 
@@ -35,22 +36,24 @@ public class CameraFollow : MonoBehaviour
         if (Mathf.Abs(yOffset) > deadZoneSize.y)
             desiredPosition += cameraUp * (yOffset - Mathf.Sign(yOffset) * deadZoneSize.y);
 
-        // Smoothly move camera
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, 1f / smoothSpeed);
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (!Camera.main) return;
+        if (!target) return;
+
+        Quaternion cameraRotation = Quaternion.Euler(pitchAngle, 0f, 0f);
+        Vector3 cameraForward = cameraRotation * Vector3.forward;
+        Vector3 cameraRight = Vector3.Cross(Vector3.up, cameraForward).normalized;
+        Vector3 cameraUp = Vector3.Cross(cameraForward, cameraRight).normalized;
 
         Vector3 center = transform.position;
-        Vector3 right = Camera.main.transform.right * deadZoneSize.x;
-        Vector3 up = Vector3.Cross(right, Vector3.forward).normalized * deadZoneSize.y;
 
-        Vector3 topLeft = center - right + up;
-        Vector3 topRight = center + right + up;
-        Vector3 bottomLeft = center - right - up;
-        Vector3 bottomRight = center + right - up;
+        Vector3 topLeft = center - cameraRight * deadZoneSize.x + cameraUp * deadZoneSize.y;
+        Vector3 topRight = center + cameraRight * deadZoneSize.x + cameraUp * deadZoneSize.y;
+        Vector3 bottomLeft = center - cameraRight * deadZoneSize.x - cameraUp * deadZoneSize.y;
+        Vector3 bottomRight = center + cameraRight * deadZoneSize.x - cameraUp * deadZoneSize.y;
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(topLeft, topRight);
