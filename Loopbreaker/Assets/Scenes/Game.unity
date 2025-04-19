@@ -329,6 +329,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5261472033047583165, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
       insertIndex: -1
       addedObject: {fileID: 963067298}
+    - targetCorrespondingSourceObject: {fileID: 5261472033047583165, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 963067303}
   m_SourcePrefab: {fileID: 100100000, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
 --- !u!1 &686638119
 GameObject:
@@ -512,6 +515,27 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.5
   dashTrail: {fileID: 0}
+--- !u!95 &963067303
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963067285}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63fc57ff2b935c14485154d051402b9e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1221372339
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +742,7 @@ Transform:
   m_GameObject: {fileID: 1571967149}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -4.63, y: 8.81, z: -7.36}
+  m_LocalPosition: {x: -4.63, y: 11.29, z: -9.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
