@@ -21,12 +21,10 @@ public class PlayerMovement : MonoBehaviour
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         // Rotate to face movement direction
-        /*if (moveDirection != Vector3.zero)
+        if (moveDirection != Vector3.zero)
         {
-            //Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0f,0f, angle-90f);
-            transform.rotation = targetRotation;
-        }*/
+            Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 0.15f);
+        }
     }
 }
