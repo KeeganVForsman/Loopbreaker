@@ -620,7 +620,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 1
 --- !u!114 &1070283190
 MonoBehaviour:
@@ -638,6 +638,27 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 10
   attackCooldown: 2
+--- !u!135 &1070283194
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070283185}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1221372339
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ornn
       objectReference: {fileID: 0}
+    - target: {fileID: 1212681669692810925, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7547809642479941816, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -967,6 +992,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1212681669692810925, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2082520725}
+    - targetCorrespondingSourceObject: {fileID: 1212681669692810925, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2082520729}
   m_SourcePrefab: {fileID: 100100000, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
 --- !u!1 &1407779083
 GameObject:
@@ -16394,6 +16422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smo
       objectReference: {fileID: 0}
+    - target: {fileID: 4002688315557877324, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7594469305347510618, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -16408,6 +16440,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4002688315557877324, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1070283190}
+    - targetCorrespondingSourceObject: {fileID: 4002688315557877324, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1070283194}
   m_SourcePrefab: {fileID: 100100000, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
 --- !u!1 &1877174772
 GameObject:
@@ -16603,7 +16638,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 1
 --- !u!114 &2082520725
 MonoBehaviour:
@@ -16621,6 +16656,29 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 10
   attackCooldown: 2
+--- !u!136 &2082520729
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082520720}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2137488450
 GameObject:
   m_ObjectHideFlags: 0
@@ -16767,9 +16825,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1571967151}
     - target: {fileID: 5626785119384496750, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
+      propertyPath: lungeDistance
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626785119384496750, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
       propertyPath: hitboxSpawnPoint
       value: 
       objectReference: {fileID: 1924094931}
+    - target: {fileID: 5626785119384496750, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626785119384496750, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
+      propertyPath: thirdAttackLungeForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7457818677679684134, guid: 365b0c9fbf7b4fb47bcc5bc6fcc904af, type: 3}
       propertyPath: moveSpeed
       value: 6.5

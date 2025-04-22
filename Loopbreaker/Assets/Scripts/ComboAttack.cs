@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ComboAttack : MonoBehaviour
 {
     public GameObject hitboxPrefab;
@@ -8,9 +9,29 @@ public class ComboAttack : MonoBehaviour
     public float comboResetTime = 0.8f;
     public int maxCombo = 3;
 
+    public float lungeDistance = 5f;
+    public float lungeDuration = 0.1f;
+
+    public float moveLockDuration = 0.15f;
+    public float thirdAttackLungeForce = 4f;
+
     private int currentCombo = 0;
     private float lastAttackTime = 0f;
     private bool canAttack = true;
+
+    [Header("Aim Assist Settings")]
+    public float aimAssistRange = 3f;
+    public float aimAssistAngle = 45f;
+    public LayerMask enemyLayer; 
+
+    private Rigidbody rb;
+    private PlayerMovement playerMovement;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     void Update()
     {
@@ -33,13 +54,21 @@ public class ComboAttack : MonoBehaviour
             }
 
             lastAttackTime = Time.time;
-            TriggerAttack(currentCombo);
+            StartCoroutine(TriggerAttack(currentCombo));
         }
     }
 
-    void TriggerAttack(int comboStep)
+    System.Collections.IEnumerator TriggerAttack(int comboStep)
     {
         canAttack = false;
+
+        // Lock player movement
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+
+        ApplyAimAssist();
 
         Debug.Log("Attack Step: " + comboStep);
 
@@ -49,12 +78,74 @@ public class ComboAttack : MonoBehaviour
             GameObject hb = Instantiate(hitboxPrefab, hitboxSpawnPoint.position, hitboxSpawnPoint.rotation);
             Destroy(hb, hitboxLifetime);
         }
+        ApplyAimAssist();
+        // Third hit gets a lunge
+        if (comboStep == 3)
+        {
+            Vector3 lungeDirection = transform.up; // Assuming 'up' is forward
+            rb.velocity = lungeDirection * lungeDistance;
 
-        Invoke(nameof(ResetAttack), 0.2f);
-    }
+            yield return new WaitForSeconds(lungeDuration);
+            rb.velocity = Vector3.zero;
+        }
+        else
+        {
+            yield return new WaitForSeconds(moveLockDuration);
+        }
 
-    void ResetAttack()
-    {
+        // Re-enable movement
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;
+        }
+
         canAttack = true;
     }
+
+    void ApplyAimAssist()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, aimAssistRange, enemyLayer);
+
+        Transform bestTarget = null;
+        float closestAngle = aimAssistAngle;
+
+        Debug.Log("Found enemies: " + hits.Length);
+
+        foreach (Collider hit in hits)
+        {
+            Vector3 toTarget = (hit.transform.position - transform.position).normalized;
+            float angle = Vector3.Angle(transform.up, toTarget); // Assuming 'up' is forward
+
+            if (angle < closestAngle)
+            {
+                closestAngle = angle;
+                bestTarget = hit.transform;
+            }
+        }
+
+        if (bestTarget)
+        {
+            Vector3 direction = (bestTarget.position - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
+            transform.rotation = targetRotation;
+        }
+
+        
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, aimAssistRange);
+
+        // Visualize cone
+        Vector3 forward = transform.up;
+        Vector3 leftLimit = Quaternion.Euler(0f, 0f, -aimAssistAngle) * forward;
+        Vector3 rightLimit = Quaternion.Euler(0f, 0f, aimAssistAngle) * forward;
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(transform.position, transform.position + leftLimit * aimAssistRange);
+        Gizmos.DrawLine(transform.position, transform.position + rightLimit * aimAssistRange);
+    }
+
 }
