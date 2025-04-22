@@ -12,7 +12,7 @@ public class Attacks : MonoBehaviour
     }
     public void OnEnable()
     {
-        playerControls.Player.Enabled();
-        playerControls.actions.FindAction("Attack").performed += OnAttack();
+        /*playerControls.Player.Enabled();
+        playerControls.actions.FindAction("Attack").performed += *//*OnAttack()*//*;*/
     }
 }
