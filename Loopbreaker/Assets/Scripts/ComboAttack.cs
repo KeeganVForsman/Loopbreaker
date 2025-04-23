@@ -62,10 +62,11 @@ public class ComboAttack : MonoBehaviour
     {
         canAttack = false;
 
-        // Lock player movement
+        // Lock player input
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
+            rb.velocity = Vector3.zero; // Stop movement immediately
         }
 
         ApplyAimAssist();
@@ -78,15 +79,15 @@ public class ComboAttack : MonoBehaviour
             GameObject hb = Instantiate(hitboxPrefab, hitboxSpawnPoint.position, hitboxSpawnPoint.rotation);
             Destroy(hb, hitboxLifetime);
         }
-        ApplyAimAssist();
+
         // Third hit gets a lunge
         if (comboStep == 3)
         {
-            Vector3 lungeDirection = transform.up; // Assuming 'up' is forward
+            Vector3 lungeDirection = transform.up;
             rb.velocity = lungeDirection * lungeDistance;
 
             yield return new WaitForSeconds(lungeDuration);
-            rb.velocity = Vector3.zero;
+            rb.velocity = Vector3.zero; // Stop after lunge
         }
         else
         {
@@ -96,6 +97,7 @@ public class ComboAttack : MonoBehaviour
         // Re-enable movement
         if (playerMovement != null)
         {
+            rb.velocity = Vector3.zero; // Ensure you're stopped before regaining control
             playerMovement.enabled = true;
         }
 
