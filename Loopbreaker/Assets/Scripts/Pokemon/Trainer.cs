@@ -3,17 +3,22 @@ using UnityEngine;
 public class Trainer : EnemyBase
 {
     public float runAwayDistance = 3f;
-
+    public float fixedZZ;
+    protected override void Start()
+    {
+        base.Start();
+        //fixedZZ = transform.position.z;
+    }
     protected override void Update()
     {
         if (!player)
         {
             return;
         }
-        Vector3 flatPosition = new Vector3(transform.position.x, 0f, transform.position.z);
-        Vector3 flatPlayerPosition = new Vector3(player.position.x, 0f, player.position.z);
+        Vector2 flatPosition = new Vector2(transform.position.x,  transform.position.z);
+        Vector2 flatPlayerPosition = new Vector2(player.position.x,  player.position.z);
 
-        float distance = Vector3.Distance(flatPosition, flatPlayerPosition);
+        float distance = Vector2.Distance(flatPosition, flatPlayerPosition);
 
         if (distance<runAwayDistance)
         {
@@ -28,14 +33,9 @@ public class Trainer : EnemyBase
 
     private void RunFromPlayer()
     {
-        Vector3 direction = (transform.position - player.position);
-        direction.y = 0f;
-        direction = direction.normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
-        if (direction!= Vector3.zero)
-        {
-            Quaternion lookrotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookrotation, 0.2f);
-        }
+        Vector2 direction = (new Vector2(transform.position.x,transform.position.y)- new Vector2(player.position.x,player.position.y)).normalized;
+        Vector3 movement = new Vector3(direction.x, direction.y, 0f) * moveSpeed * Time.deltaTime;
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, fixedZZ);
     }
 }
