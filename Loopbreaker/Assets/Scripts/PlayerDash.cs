@@ -7,6 +7,8 @@ public class PlayerDash : MonoBehaviour
     public float dashDuration = 0.2f;
     public float dashCooldown = 0.5f;
     public TrailRenderer dashTrail;
+    public LayerMask dashObstacleMask;
+    public float playerRadius = 0.3f;
 
     private Vector2 moveInput;
     private Vector3 dashDirection;
@@ -14,22 +16,27 @@ public class PlayerDash : MonoBehaviour
     private float dashTime;
     private float cooldownTime;
 
+    private Vector3 dashTarget;
+
     private void Update()
     {
-        // Cooldown timer
         if (cooldownTime > 0)
             cooldownTime -= Time.deltaTime;
 
-        // Dash logic
         if (isDashing)
         {
-            transform.position += dashDirection * dashSpeed * Time.deltaTime;
-            dashTime -= Time.deltaTime;
+            Vector3 direction = (dashTarget - transform.position).normalized;
+            float distanceToTarget = Vector3.Distance(transform.position, dashTarget);
+            float moveDistance = dashSpeed * Time.deltaTime;
 
-            if (dashTime <= 0f)
+            if (moveDistance >= distanceToTarget)
             {
-                isDashing = false;
-                if (dashTrail) dashTrail.emitting = false;
+                transform.position = dashTarget;
+                EndDash();
+            }
+            else
+            {
+                transform.position += direction * moveDistance;
             }
         }
     }
@@ -44,17 +51,34 @@ public class PlayerDash : MonoBehaviour
         if (cooldownTime > 0 || isDashing) return;
 
         Vector3 inputDir = new Vector3(moveInput.x, moveInput.y, 0f);
+        if (inputDir == Vector3.zero) return;
 
-        if (inputDir != Vector3.zero)
-        {
-            dashDirection = inputDir.normalized;
-            isDashing = true;
-            dashTime = dashDuration;
-            cooldownTime = dashCooldown;
+        dashDirection = inputDir.normalized;
+        float maxDistance = dashSpeed * dashDuration;
 
-            if (dashTrail) dashTrail.emitting = true;
+        // Only block dash with collisions on the 'Wall' layer
+        RaycastHit hit;
+        bool hitWall = Physics.Raycast(
+            transform.position,
+            dashDirection,
+            out hit,
+            maxDistance,
+            dashObstacleMask // make sure this only includes the Wall layer!
+        );
 
-            // Optional: trigger dash animation, sound, etc.
-        }
+        float finalDistance = hitWall ? hit.distance - 0.05f : maxDistance;
+        dashTarget = transform.position + dashDirection * finalDistance;
+
+        isDashing = true;
+        dashTime = dashDuration;
+        cooldownTime = dashCooldown;
+
+        if (dashTrail) dashTrail.emitting = true;
+    }
+
+    private void EndDash()
+    {
+        isDashing = false;
+        if (dashTrail) dashTrail.emitting = false;
     }
 }
