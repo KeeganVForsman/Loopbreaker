@@ -6,7 +6,8 @@ public class Trainer : EnemyBase
     public float fixedZZ;
     public float fleeDistanceStop = 4f;
     public bool isFleeing;
-    private Rigidbody2D rb; 
+    private Rigidbody2D rb;
+    public Transform followPokemon;
     protected override void Start()
     {
         base.Start();
@@ -37,6 +38,10 @@ public class Trainer : EnemyBase
         {
             RunFromPlayer(enemy2D, player2D);
         }
+        else if (followPokemon)
+        {
+            followChaser(enemy2D, followPokemon.position);
+        }
 
     }
 
@@ -52,5 +57,12 @@ public class Trainer : EnemyBase
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
         }
+    }
+    private void followChaser(Vector2 selfPos, Vector2 targetPos)
+    {
+        Vector2 direction = (targetPos - selfPos).normalized;
+        Vector2 newPos = selfPos + direction * moveSpeed * Time.deltaTime;
+        rb.MovePosition(newPos);
+
     }
 }
