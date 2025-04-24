@@ -7,6 +7,7 @@ public class Trainer : EnemyBase
     public float fleeDistanceStop = 4f;
     public bool isFleeing;
     private Rigidbody2D rb;
+    public float followDistance;
     public Transform followPokemon;
     protected override void Start()
     {

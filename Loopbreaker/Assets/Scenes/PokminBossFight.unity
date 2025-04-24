@@ -23458,6 +23458,7 @@ MonoBehaviour:
   fixedZZ: 0
   fleeDistanceStop: 4
   isFleeing: 0
+  followDistance: 0
   followPokemon: {fileID: 1260823594}
 --- !u!54 &2027088201
 Rigidbody:
