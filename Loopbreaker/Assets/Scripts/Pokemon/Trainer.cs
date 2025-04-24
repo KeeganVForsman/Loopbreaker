@@ -4,9 +4,13 @@ public class Trainer : EnemyBase
 {
     public float runAwayDistance = 3f;
     public float fixedZZ;
+    public float fleeDistanceStop = 4f;
+    public bool isFleeing;
+    private Rigidbody2D rb; 
     protected override void Start()
     {
         base.Start();
+        rb = GetComponent<Rigidbody2D>();
         //fixedZZ = transform.position.z;
     }
     protected override void Update()
@@ -15,27 +19,38 @@ public class Trainer : EnemyBase
         {
             return;
         }
-        Vector2 flatPosition = new Vector2(transform.position.x,  transform.position.z);
-        Vector2 flatPlayerPosition = new Vector2(player.position.x,  player.position.z);
+        Vector2 enemy2D = new Vector2(transform.position.x,  transform.position.y);
+        Vector2 player2D = new Vector2(player.position.x,  player.position.y);
 
-        float distance = Vector2.Distance(flatPosition, flatPlayerPosition);
+        float distance = Vector2.Distance(enemy2D, player2D);
 
-        if (distance<runAwayDistance)
+        if (!isFleeing && distance< runAwayDistance)
         {
-            RunFromPlayer();
+            isFleeing = true;
         }
-        else
+        else if(isFleeing && distance>fleeDistanceStop)
         {
-            //commands the dragon enemy
+            isFleeing = false;
+        }
+
+        if (isFleeing)
+        {
+            RunFromPlayer(enemy2D, player2D);
         }
 
     }
 
-    private void RunFromPlayer()
+    private void RunFromPlayer(Vector2 enemy2D, Vector2 player2D)
     {
-        Vector2 direction = (new Vector2(transform.position.x,transform.position.y)- new Vector2(player.position.x,player.position.y)).normalized;
+        Vector2 direction = (enemy2D - player2D).normalized;
         Vector3 movement = new Vector3(direction.x, direction.y, 0f) * moveSpeed * Time.deltaTime;
-
-        transform.position = new Vector3(transform.position.x, transform.position.y, fixedZZ);
+        Vector2 newPosition = enemy2D + direction * moveSpeed * Time.deltaTime;
+        transform.position += movement;
+        rb.MovePosition(newPosition);
+        if (direction != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
+        }
     }
 }
