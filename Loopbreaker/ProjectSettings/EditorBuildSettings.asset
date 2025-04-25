@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 3e44ffee137c0584e99c52ee960f1f5e
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 1b1ab9bbc26f2214d9138d7080c8657e
+  - enabled: 1
+    path: Assets/Scenes/PokminBossFight.unity
+    guid: f092ad3e9fed81a44bb6ef8846f415e0
   m_configObjects: {}
