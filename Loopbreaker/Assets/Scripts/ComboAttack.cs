@@ -22,7 +22,10 @@ public class ComboAttack : MonoBehaviour
     [Header("Aim Assist Settings")]
     public float aimAssistRange = 3f;
     public float aimAssistAngle = 45f;
-    public LayerMask enemyLayer; 
+    public LayerMask enemyLayer;
+
+    [Header("Sword Swing Settings")]
+    public SwordSwing swordSwing; // <-- NEW!
 
     private Rigidbody rb;
     private PlayerMovement playerMovement;
@@ -31,6 +34,11 @@ public class ComboAttack : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        if (swordSwing == null)
+        {
+            Debug.LogWarning("SwordSwing not assigned on ComboAttack! Assign it in the inspector.");
+        }
     }
 
     void Update()
@@ -73,6 +81,12 @@ public class ComboAttack : MonoBehaviour
 
         Debug.Log("Attack Step: " + comboStep);
 
+        // Start sword swing!
+        if (swordSwing != null)
+        {
+            swordSwing.StartSwing();
+        }
+
         // Spawn a visible hitbox
         if (hitboxPrefab && hitboxSpawnPoint)
         {
@@ -97,7 +111,7 @@ public class ComboAttack : MonoBehaviour
         // Re-enable movement
         if (playerMovement != null)
         {
-            rb.velocity = Vector3.zero; // Ensure you're stopped before regaining control
+            rb.velocity = Vector3.zero;
             playerMovement.enabled = true;
         }
 
@@ -131,8 +145,6 @@ public class ComboAttack : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
             transform.rotation = targetRotation;
         }
-
-        
     }
 
     void OnDrawGizmosSelected()
@@ -149,5 +161,4 @@ public class ComboAttack : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + leftLimit * aimAssistRange);
         Gizmos.DrawLine(transform.position, transform.position + rightLimit * aimAssistRange);
     }
-
 }
