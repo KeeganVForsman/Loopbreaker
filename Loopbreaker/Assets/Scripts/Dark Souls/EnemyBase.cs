@@ -43,4 +43,16 @@ public class EnemyBase : MonoBehaviour
         Debug.Log(name + " attacks for " + damage + " damage!");
         // Add actual damage code here
     }
+
+    protected void AvoidOtherBoss(Transform otherBoss, float avoidDistance = 2f, float avoidStrength = 1f)
+    {
+        if (otherBoss == null) return;
+
+        float distance = Vector3.Distance(transform.position, otherBoss.position);
+        if (distance < avoidDistance)
+        {
+            Vector3 awayDir = (transform.position - otherBoss.position).normalized;
+            transform.position += awayDir * avoidStrength * Time.deltaTime;
+        }
+    }
 }
