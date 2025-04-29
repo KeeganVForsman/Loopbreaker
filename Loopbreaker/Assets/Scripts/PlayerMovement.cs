@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     public float moveSpeed = 5f;
 
     private Vector2 movementInput;
@@ -14,6 +15,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        //damage test
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            FindObjectOfType<PlayerHealth>().TakeDamage(20);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GameObject.Find("Smo").GetComponent<BossHealthBar>().TakeDamage(20);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameObject.Find("Ornn").GetComponent<BossHealthBar>().TakeDamage(20);
+        }
+
+
+        /////////////////////////////////
+
         // Move using input directly (X/Y only)
         Vector3 moveDirection = new Vector3(movementInput.x, movementInput.y, 0f);
 
