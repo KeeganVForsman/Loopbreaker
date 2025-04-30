@@ -2,6 +2,11 @@
 using UnityEngine;
 public class Trainer : EnemyBase
 {
+
+    public GameObject hitboxPrefab;
+    public Transform hitboxSpawnPoint;
+    public float hitboxLifetime = 0.5f;
+    public float hitstopDuration = 0.1f;
     public float runAwayDistance = 3f;
     public float fixedZZ;
     public float fleeDistanceStop = 4f;

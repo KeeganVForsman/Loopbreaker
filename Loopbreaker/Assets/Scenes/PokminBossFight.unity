@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 742802942}
+    - target: {fileID: 6760235490825668757, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: hitboxPrefab
+      value: 
+      objectReference: {fileID: 2634312024320757374, guid: a6f279f45ab7ef945be3495f095f47ba, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23964,6 +23968,10 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 10
   attackCooldown: 2
+  hitboxPrefab: {fileID: 4209449067347652642, guid: 6efd584876aee0e408fb8c3011d74248, type: 3}
+  hitboxSpawnPoint: {fileID: 1260823594}
+  hitboxLifetime: 0.5
+  hitstopDuration: 0.1
 --- !u!1 &1268024524
 GameObject:
   m_ObjectHideFlags: 0
@@ -24798,6 +24806,10 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 10
   attackCooldown: 2
+  hitboxPrefab: {fileID: 3568453326270181107, guid: 41cd51dd0cc441149a7068ad50ed0f86, type: 3}
+  hitboxSpawnPoint: {fileID: 2027088199}
+  hitboxLifetime: 0.5
+  hitstopDuration: 0.1
   runAwayDistance: 4
   fixedZZ: 0
   fleeDistanceStop: 3
