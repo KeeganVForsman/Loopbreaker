@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class SwordSwing : MonoBehaviour
@@ -11,6 +12,18 @@ public class SwordSwing : MonoBehaviour
     private float currentAngle = 0f;
     private bool isSwinging = false;
     private Quaternion startingRotation;
+
+    private Collider weaponCollider;
+
+
+    void Awake()
+     {
+        weaponCollider = GetComponent<Collider>();
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false; // Disable by default
+        }
+     }
 
     private void Start()
     {
@@ -40,6 +53,11 @@ public class SwordSwing : MonoBehaviour
         {
             currentAngle = 0f;
             isSwinging = true;
+
+            if (weaponCollider != null)
+            {
+                StartCoroutine(EnableColliderTemporarily());
+            }
         }
     }
 
@@ -54,5 +72,13 @@ public class SwordSwing : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+
+    private System.Collections.IEnumerator EnableColliderTemporarily()
+    {
+        weaponCollider.enabled = true;
+        yield return new WaitForSeconds(0.2f); // Match hitboxLifetime or animation timing
+        weaponCollider.enabled = false;
     }
 }

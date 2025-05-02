@@ -3952,6 +3952,20 @@ MonoBehaviour:
   maxHealth: 200
   currentHealth: 0
   healthBarFill: {fileID: 1269706103}
+--- !u!114 &1070283201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070283185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911ceb06a49daa345b6c9c76a1dcf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  bossHealthBar: {fileID: 1070283198}
 --- !u!1 &1142754439
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,6 +4994,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1212681669692810925, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7129488254457770401, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5087,6 +5105,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1212681669692810925, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2082520733}
+    - targetCorrespondingSourceObject: {fileID: 1212681669692810925, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2082520736}
   m_SourcePrefab: {fileID: 100100000, guid: 4494d8caa87588b4486b5f41a1b77c78, type: 3}
 --- !u!1 &1407779083
 GameObject:
@@ -20928,6 +20949,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4002688315557877324, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7594469305347510618, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -20967,6 +20992,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4002688315557877324, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1070283198}
+    - targetCorrespondingSourceObject: {fileID: 4002688315557877324, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1070283201}
   m_SourcePrefab: {fileID: 100100000, guid: 0134f1f63960f674c8466ff86dd80c1a, type: 3}
 --- !u!1 &1778411629
 GameObject:
@@ -21676,6 +21704,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2001185223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8970017891886647178, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+  m_PrefabInstance: {fileID: 6728065999503377223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2001185229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001185223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fe182f9fb81534486045ef8ed9cd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
 --- !u!1 &2037181483
 GameObject:
   m_ObjectHideFlags: 0
@@ -22059,6 +22105,20 @@ MonoBehaviour:
   maxHealth: 200
   currentHealth: 0
   healthBarFill: {fileID: 1148342806}
+--- !u!114 &2082520736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082520720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911ceb06a49daa345b6c9c76a1dcf012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  bossHealthBar: {fileID: 2082520733}
 --- !u!1 &2114787946
 GameObject:
   m_ObjectHideFlags: 0
@@ -22360,7 +22420,11 @@ PrefabInstance:
       objectReference: {fileID: 1571967151}
     - target: {fileID: 7475379305884955394, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475379305884955394, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8343583210448482854, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -22376,6 +22440,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1083033163671810453, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7557428633531463513}
+    - targetCorrespondingSourceObject: {fileID: 8970017891886647178, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2001185229}
   m_SourcePrefab: {fileID: 100100000, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
 --- !u!4 &7557428633531463503 stripped
 Transform:
@@ -22396,7 +22463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  healthBarFill: {fileID: 664924049}
+  HealthSlider: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

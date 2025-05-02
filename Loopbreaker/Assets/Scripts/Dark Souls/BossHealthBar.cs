@@ -10,7 +10,17 @@ public class BossHealthBar : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
+        if (currentHealth == 0)
+        {
+            currentHealth = maxHealth;
+        }
+        UpdateHealthUI();
+    }
+
+    public void SetHealth(int current, int max)
+    {
+        currentHealth = current;
+        maxHealth = max;
         UpdateHealthUI();
     }
 
@@ -36,7 +46,7 @@ public class BossHealthBar : MonoBehaviour
 
     void Die()
     {
-        Debug.Log(gameObject.name + " died!");
-        // Trigger death animation, disable AI, etc.
+        Debug.Log(gameObject.name + " (UI) says: Boss died.");
+        // Optional: play UI fade or hide animation
     }
 }
