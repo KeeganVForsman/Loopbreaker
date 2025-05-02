@@ -15,8 +15,8 @@ TagManager:
   - Enemies
   - Walls
   - obstacles
-  - 
-  - 
+  - player
+  - HitBox
   - 
   - 
   - 

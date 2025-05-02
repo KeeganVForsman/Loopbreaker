@@ -252,6 +252,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Playervariant2
       objectReference: {fileID: 0}
+    - target: {fileID: 1083033163671810453, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481375015817379011, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3636572089417342078, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8926597
@@ -296,10 +304,34 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 742802942}
+    - target: {fileID: 5854668652146250520, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6760235490825668757, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: hitboxPrefab
       value: 
       objectReference: {fileID: 2634312024320757374, guid: a6f279f45ab7ef945be3495f095f47ba, type: 3}
+    - target: {fileID: 6888413734476749537, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080508878135255839, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7087628686738853373, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566941664104514586, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8970017891886647178, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23919,7 +23951,7 @@ Transform:
   m_GameObject: {fileID: 1260823590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.55, y: 11.42, z: -0.76}
+  m_LocalPosition: {x: -11.55, y: 11.42, z: -0.648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23968,10 +24000,11 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 10
   attackCooldown: 2
-  hitboxPrefab: {fileID: 4209449067347652642, guid: 6efd584876aee0e408fb8c3011d74248, type: 3}
+  hitboxPrefab: {fileID: 7353635618010327655, guid: 63ad0ce6f19a1734aa6742e5ccfdce8a, type: 3}
   hitboxSpawnPoint: {fileID: 1260823594}
   hitboxLifetime: 0.5
   hitstopDuration: 0.1
+  hitBox: {fileID: 2932513546671623059, guid: 63ad0ce6f19a1734aa6742e5ccfdce8a, type: 3}
 --- !u!1 &1268024524
 GameObject:
   m_ObjectHideFlags: 0
