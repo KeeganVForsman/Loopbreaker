@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-
+    public float maxHealth = 100;
+    public float currentHealth;
+    
     //public Image healthBarFill; // Drag HealthBarFill here in Inspector
     public Slider HealthSlider;
     void Start()
@@ -14,10 +14,10 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
         UpdateHealthUI();
 
