@@ -15,6 +15,12 @@ public class Trainer : EnemyBase
     public float followDistance;
     public Transform followPokemon;
     public Vector3 moveDirection;
+    public GameObject bombPrefab;
+    public Transform throwPoint;
+    public float throwcoolDown = 2f;
+    public float throwForce = 10f;
+    public float throwTime = 0f;
+
     protected override void Start()
     {
         base.Start();
@@ -53,6 +59,11 @@ public class Trainer : EnemyBase
         {
             moveDirection = Vector3.zero;
         }
+        if (isFleeing && Time.time - throwTime >= throwcoolDown)
+        {
+            ThrowBombs();
+            throwTime = Time.time;
+        }
 
     }
     private void FixedUpdate()
@@ -76,5 +87,21 @@ public class Trainer : EnemyBase
         
         moveDirection = direction.normalized;
 
+    }
+
+    public void ThrowBombs()
+    {
+        if (bombPrefab == null || throwPoint == null || player == null) 
+        {
+            return;
+        }
+        GameObject bomb = Instantiate(bombPrefab, throwPoint.position, throwPoint.rotation);
+
+        Rigidbody bombRB = bomb.GetComponent<Rigidbody>();
+        if (bombRB != null) 
+        {
+            Vector3 directionToPlayer = (player.position - throwPoint.position).normalized;
+            bombRB.velocity = directionToPlayer * throwForce;
+        }
     }
 }
