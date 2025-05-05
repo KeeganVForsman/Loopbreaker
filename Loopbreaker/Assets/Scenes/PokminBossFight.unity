@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: hitboxPrefab
       value: 
       objectReference: {fileID: 2634312024320757374, guid: a6f279f45ab7ef945be3495f095f47ba, type: 3}
+    - target: {fileID: 6760235490825668757, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: hitboxLifetime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6888413734476749537, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -323,6 +327,10 @@ PrefabInstance:
     - target: {fileID: 7087628686738853373, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475379305884955394, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7566941664104514586, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_Layer
@@ -339,6 +347,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1083033163671810453, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1356737660}
+    - targetCorrespondingSourceObject: {fileID: 8970017891886647178, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2058475314}
   m_SourcePrefab: {fileID: 100100000, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
 --- !u!1 &470029026
 GameObject:
@@ -554,6 +565,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589577806}
   m_CullTransparentMesh: 1
+--- !u!1 &642228594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642228595}
+  m_Layer: 6
+  m_Name: ThrowPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &642228595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642228594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.74, z: -0.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2027088199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &643975216
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +643,6 @@ GameObject:
   - component: {fileID: 671638375}
   - component: {fileID: 671638374}
   - component: {fileID: 671638377}
-  - component: {fileID: 671638376}
   m_Layer: 0
   m_Name: GameObject (3)
   m_TagString: Untagged
@@ -645,14 +686,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -153.097, y: -267.421, z: 267.087}
---- !u!33 &671638376
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671638372}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &671638377
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23864,7 +23897,7 @@ GameObject:
   - component: {fileID: 1260823596}
   m_Layer: 6
   m_Name: DaPokemon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23965,7 +23998,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260823590}
   serializedVersion: 4
-  m_Mass: 5000
+  m_Mass: 50000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -24005,6 +24038,9 @@ MonoBehaviour:
   hitboxLifetime: 0.5
   hitstopDuration: 0.1
   hitBox: {fileID: 2932513546671623059, guid: 63ad0ce6f19a1734aa6742e5ccfdce8a, type: 3}
+  maxHealth: 1000
+  currentHealth: 0
+  HealthSlider: {fileID: 1205414297}
 --- !u!1 &1268024524
 GameObject:
   m_ObjectHideFlags: 0
@@ -24730,7 +24766,7 @@ GameObject:
   - component: {fileID: 2027088201}
   m_Layer: 6
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24817,10 +24853,11 @@ Transform:
   m_GameObject: {fileID: 2027088195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.15, y: 12.39, z: -0.3}
+  m_LocalPosition: {x: -14.15, y: 12.153, z: -0.3}
   m_LocalScale: {x: 0.50503, y: 0.50503, z: 0.50503}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 642228595}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2027088200
@@ -24850,6 +24887,11 @@ MonoBehaviour:
   followDistance: 0
   followPokemon: {fileID: 1260823594}
   moveDirection: {x: 0, y: 0, z: 0}
+  bombPrefab: {fileID: 7417249016476409344, guid: 7deb315e5f5e0fc418916b78c0186a1b, type: 3}
+  throwPoint: {fileID: 642228595}
+  throwcoolDown: 2
+  throwForce: 10
+  throwTime: 0
 --- !u!54 &2027088201
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24877,6 +24919,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!1 &2058475311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8970017891886647178, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+  m_PrefabInstance: {fileID: 343233862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2058475314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058475311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fe182f9fb81534486045ef8ed9cd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
 --- !u!1 &2072860864
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 public class Charizard : EnemyBase
 {
     public GameObject hitboxPrefab;
@@ -6,12 +7,20 @@ public class Charizard : EnemyBase
     public float hitboxLifetime = 0.5f;
     public float hitstopDuration = 0.1f;
     public Collider hitBox;
+    public float maxHealth = 100;
+    public float currentHealth;
+
+    //public Image healthBarFill; // Drag HealthBarFill here in Inspector
+    public Slider HealthSlider;
     protected override void Start()
     {
         base.Start();
         moveSpeed = 2f;
         damage = 15f;
         attackCooldown = 3f;
+
+        currentHealth = maxHealth;
+        HealthSlider.value = currentHealth / maxHealth;
     }
 
     protected override void Attack()
@@ -41,6 +50,28 @@ public class Charizard : EnemyBase
             playerHealth.TakeDamage(damageAmount);
             Debug.Log("Player taking damage :" + damage); 
         }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (HealthSlider != null)
+        {
+            HealthSlider.value = currentHealth / maxHealth;
+        }
+        Debug.Log(gameObject.name + "Took " + amount + "Damage. Current health" + currentHealth);
+
+        if (currentHealth<=0)
+        {
+            Die();
+        }
+    }
+    public void Die()
+    {
+        Debug.Log(gameObject.name + "is dead");
+        Destroy(gameObject);
     }
 
 }
