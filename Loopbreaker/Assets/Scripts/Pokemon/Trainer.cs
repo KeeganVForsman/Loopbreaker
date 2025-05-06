@@ -1,4 +1,4 @@
-
+using UnityEngine.UI;
 using UnityEngine;
 public class Trainer : EnemyBase
 {
@@ -20,12 +20,18 @@ public class Trainer : EnemyBase
     public float throwcoolDown = 2f;
     public float throwForce = 10f;
     public float throwTime = 0f;
+    public float maxHealth = 100;
+    public float currentHealth;
 
+    //public Image healthBarFill; // Drag HealthBarFill here in Inspector
+    public Slider HealthSlider;
     protected override void Start()
     {
         base.Start();
         rb = GetComponent<Rigidbody>();
         //fixedZZ = transform.position.z;
+        currentHealth = maxHealth;
+        HealthSlider.value = currentHealth / maxHealth;
     }
     protected override void Update()
     {
@@ -103,5 +109,26 @@ public class Trainer : EnemyBase
             Vector3 directionToPlayer = (player.position - throwPoint.position).normalized;
             bombRB.velocity = directionToPlayer * throwForce;
         }
+    }
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (HealthSlider != null)
+        {
+            HealthSlider.value = currentHealth / maxHealth;
+        }
+        Debug.Log(gameObject.name + "Took " + amount + "Damage. Current health" + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    public void Die()
+    {
+        Debug.Log(gameObject.name + "is dead");
+        Destroy(gameObject);
     }
 }

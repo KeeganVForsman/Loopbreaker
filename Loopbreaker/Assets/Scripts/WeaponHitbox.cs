@@ -19,6 +19,12 @@ public class WeaponHitbox : MonoBehaviour
             {
                 chariHealth.TakeDamage(damage);
             }
+
+            Trainer trainerHealth = other.GetComponent<Trainer>();
+            if (trainerHealth!=null)
+            {
+                trainerHealth.TakeDamage(damage);
+            }
         }
         
     }

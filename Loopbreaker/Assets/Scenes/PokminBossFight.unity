@@ -24887,11 +24887,14 @@ MonoBehaviour:
   followDistance: 0
   followPokemon: {fileID: 1260823594}
   moveDirection: {x: 0, y: 0, z: 0}
-  bombPrefab: {fileID: 7417249016476409344, guid: 7deb315e5f5e0fc418916b78c0186a1b, type: 3}
+  bombPrefab: {fileID: 5400819107807496944, guid: 401645710f5827241bb5f4e21e8b3967, type: 3}
   throwPoint: {fileID: 642228595}
   throwcoolDown: 2
   throwForce: 10
   throwTime: 0
+  maxHealth: 100
+  currentHealth: 0
+  HealthSlider: {fileID: 1967148350}
 --- !u!54 &2027088201
 Rigidbody:
   m_ObjectHideFlags: 0
