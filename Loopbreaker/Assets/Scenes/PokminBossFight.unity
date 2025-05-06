@@ -25349,7 +25349,7 @@ MonoBehaviour:
   throwcoolDown: 2
   throwForce: 10
   throwTime: 0
-  maxHealth: 100
+  maxHealth: 500
   currentHealth: 0
   HealthSlider: {fileID: 1967148350}
 --- !u!54 &2027088201
