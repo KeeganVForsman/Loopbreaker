@@ -66,6 +66,7 @@ public class Charizard : EnemyBase
         if (currentHealth<=0)
         {
             Die();
+            FindObjectOfType<SceneBossManager>()?.RegisterBossDefeat();
         }
     }
     public void Die()

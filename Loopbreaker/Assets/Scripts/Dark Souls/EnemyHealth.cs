@@ -37,5 +37,7 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log(gameObject.name + " died.");
         // Optional: Disable enemy, play animation, etc.
         gameObject.SetActive(false);
+
+        FindObjectOfType<SceneBossManager>()?.RegisterBossDefeat();
     }
 }

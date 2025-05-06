@@ -11,6 +11,7 @@ public class GameFlowManager : MonoBehaviour
     private int firstBoss;
     private int secondBoss;
     private bool firstBossDefeated = false;
+    private bool bossOrderInitialized = false;
 
     void Awake()
     {
@@ -26,8 +27,16 @@ public class GameFlowManager : MonoBehaviour
         }
     }
 
+    public bool BothBossesDefeated()
+    {
+        return firstBossDefeated;
+        // If you're planning more than 2 bosses later, expand this logic accordingly
+    }
+
     void InitializeBossOrder()
     {
+        if (bossOrderInitialized) return;
+
         if (Random.Range(0, 2) == 0)
         {
             firstBoss = boss1SceneIndex;
@@ -38,22 +47,37 @@ public class GameFlowManager : MonoBehaviour
             firstBoss = boss2SceneIndex;
             secondBoss = boss1SceneIndex;
         }
+
+        bossOrderInitialized = true;
+        Debug.Log($"Boss order initialized: First = {firstBoss}, Second = {secondBoss}");
     }
 
-    public int GetFirstBossSceneIndex() => firstBoss;
-    public int GetSecondBossSceneIndex() => secondBoss;
+    public void StartFirstBoss()
+    {
+        InitializeBossOrder();
+        SceneManager.LoadScene(firstBoss);
+    }
 
     public void OnBossDefeated()
     {
-        if (!firstBossDefeated)
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        if (!firstBossDefeated && currentScene == firstBoss)
         {
             firstBossDefeated = true;
             SceneManager.LoadScene(secondBoss);
         }
-        else
+        else if (firstBossDefeated && currentScene == secondBoss)
         {
             Debug.Log("Both bosses defeated! Load end scene or victory screen.");
-            // SceneManager.LoadScene("VictoryScene"); // Uncomment if needed
+            // SceneManager.LoadScene("VictoryScene"); // optional
+        }
+        else
+        {
+            Debug.LogWarning("Called OnBossDefeated from an unexpected scene!");
         }
     }
+
+    public int GetFirstBossSceneIndex() => firstBoss;
+    public int GetSecondBossSceneIndex() => secondBoss;
 }
