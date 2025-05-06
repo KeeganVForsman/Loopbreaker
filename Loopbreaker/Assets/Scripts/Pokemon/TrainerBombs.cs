@@ -20,6 +20,42 @@ public class TrainerBombs : MonoBehaviour
     }
     public void checkForPlayerProx()
     {
+        if (hasExploded) return;
 
+        Collider[] players = Physics.OverlapSphere(transform.position, explosionRadius, playerLayer);
+        if (players.Length>0)
+        {
+            Invoke(nameof(Explode), explosionDelay);
+            hasExploded = true;
+        }
+        
+    }
+
+    public void Explode()
+    {
+        if (explosionEffectPrefab)
+        {
+            GameObject explosion = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion, 2f);
+        }
+
+        Collider[] players = Physics.OverlapSphere(transform.position, explosionRadius, playerLayer);
+        foreach (Collider player in players)
+        {
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(explosionDamage);
+                Debug.Log("Player took explosion damage");
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
