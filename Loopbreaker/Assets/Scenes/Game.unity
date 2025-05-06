@@ -1255,6 +1255,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370495653}
   m_CullTransparentMesh: 1
+--- !u!1 &378572848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378572850}
+  - component: {fileID: 378572849}
+  m_Layer: 0
+  m_Name: BossManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &378572849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378572848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154b33f948cb8b045bcd0b41887db688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalToNext: {fileID: 502765789}
+  totalBossesInScene: 2
+--- !u!4 &378572850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378572848}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.67064, y: 5.9423757, z: 4.8801856}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &385701705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,6 +1936,7 @@ GameObject:
   - component: {fileID: 502765792}
   - component: {fileID: 502765791}
   - component: {fileID: 502765790}
+  - component: {fileID: 502765793}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -1946,6 +1993,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502765793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502765789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59afee962b8e08488efeb7e9c8be138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToEnable: {fileID: 502765789}
 --- !u!1 &519414871
 GameObject:
   m_ObjectHideFlags: 0
@@ -22779,3 +22839,4 @@ SceneRoots:
   - {fileID: 1059298967}
   - {fileID: 631854177}
   - {fileID: 502765792}
+  - {fileID: 378572850}

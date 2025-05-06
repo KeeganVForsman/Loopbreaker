@@ -124,11 +124,15 @@ public class Trainer : EnemyBase
         if (currentHealth <= 0)
         {
             Die();
+            
         }
     }
     public void Die()
     {
         Debug.Log(gameObject.name + "is dead");
-        Destroy(gameObject);
+        FindObjectOfType<SceneBossManager>()?.RegisterBossDefeat();
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
+
     }
 }
