@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneBossManager : MonoBehaviour
 {
@@ -11,6 +12,22 @@ public class SceneBossManager : MonoBehaviour
     {
         if (portalToNext != null)
             portalToNext.SetActive(false); // Disable portal initially
+
+        ///test problem scene
+        //if (SceneManager.GetActiveScene().name == "PokminBossFight") 
+        //{
+        //    if (portalToNext != null)
+        //    {
+        //        portalToNext.SetActive(true);
+        //        Debug.Log("Manually forcing portal open in test scene.");
+        //    }
+        //    else
+        //    {
+        //        Debug.LogWarning("portalToNext is not assigned in test scene.");
+        //    }
+        //}
+
+
     }
 
     public void RegisterBossDefeat()
