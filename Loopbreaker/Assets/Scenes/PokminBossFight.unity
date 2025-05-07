@@ -24182,6 +24182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1083033163671810453, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3591044047249578535, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_Avatar
       value: 
@@ -24376,6 +24380,10 @@ PrefabInstance:
       objectReference: {fileID: 11500000, guid: af022ebe5d8fdf842a6e3055cbc0e51f, type: 3}
     - target: {fileID: 5666851518107973088, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888413734476749537, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7475379305884955394, guid: 961dc0f3712a0f64483670da9889e38f, type: 3}
