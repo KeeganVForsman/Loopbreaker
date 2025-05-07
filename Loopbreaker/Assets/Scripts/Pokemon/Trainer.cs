@@ -2,7 +2,6 @@ using UnityEngine.UI;
 using UnityEngine;
 public class Trainer : EnemyBase
 {
-
     public GameObject hitboxPrefab;
     public Transform hitboxSpawnPoint;
     public float hitboxLifetime = 0.5f;
