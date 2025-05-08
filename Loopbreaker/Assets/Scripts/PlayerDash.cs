@@ -10,10 +10,13 @@ public class PlayerDash : MonoBehaviour
     public LayerMask dashObstacleMask;
     public float playerRadius = 0.3f;
 
+    [Header("Dash Effects")]
+    public GameObject playerVisuals; // Drag the visual part of the player here
+    public Collider hurtbox; // Assign the collider that takes damage
+
     private Vector2 moveInput;
     private Vector3 dashDirection;
     private bool isDashing = false;
-    private float dashTime;
     private float cooldownTime;
 
     private Vector3 dashTarget;
@@ -56,29 +59,32 @@ public class PlayerDash : MonoBehaviour
         dashDirection = inputDir.normalized;
         float maxDistance = dashSpeed * dashDuration;
 
-        // Only block dash with collisions on the 'Wall' layer
         RaycastHit hit;
         bool hitWall = Physics.Raycast(
             transform.position,
             dashDirection,
             out hit,
             maxDistance,
-            dashObstacleMask // make sure this only includes the Wall layer!
+            dashObstacleMask
         );
 
         float finalDistance = hitWall ? hit.distance - 0.05f : maxDistance;
         dashTarget = transform.position + dashDirection * finalDistance;
 
         isDashing = true;
-        dashTime = dashDuration;
         cooldownTime = dashCooldown;
 
         if (dashTrail) dashTrail.emitting = true;
+        if (playerVisuals) playerVisuals.SetActive(false); // Turn invisible
+        if (hurtbox) hurtbox.enabled = false; // Give i-frames
     }
 
     private void EndDash()
     {
         isDashing = false;
+
         if (dashTrail) dashTrail.emitting = false;
+        if (playerVisuals) playerVisuals.SetActive(true); // Make visible again
+        if (hurtbox) hurtbox.enabled = true; // Remove i-frames
     }
 }

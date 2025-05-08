@@ -25,10 +25,13 @@ public class ComboAttack : MonoBehaviour
     public LayerMask enemyLayer;
 
     [Header("Sword Swing Settings")]
-    public SwordSwing swordSwing; // <-- NEW!
+    public SwordSwing swordSwing; // 
+
 
     private Rigidbody rb;
     private PlayerMovement playerMovement;
+
+
 
     void Awake()
     {
@@ -84,7 +87,7 @@ public class ComboAttack : MonoBehaviour
         // Start sword swing!
         if (swordSwing != null)
         {
-            swordSwing.StartSwing();
+            swordSwing.StartSwing(comboStep);
         }
 
         // Spawn a visible hitbox
@@ -108,11 +111,16 @@ public class ComboAttack : MonoBehaviour
             yield return new WaitForSeconds(moveLockDuration);
         }
 
-        // Re-enable movement
         if (playerMovement != null)
         {
             rb.velocity = Vector3.zero;
             playerMovement.enabled = true;
+        }
+
+        // Reset sword transform
+        if (swordSwing != null)
+        {
+            swordSwing.ResetWeapon();
         }
 
         canAttack = true;
