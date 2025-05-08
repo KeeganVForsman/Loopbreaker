@@ -22,7 +22,7 @@ public class Trainer : EnemyBase
     public float maxHealth = 100;
     public float currentHealth;
     public bool isThrowing = false;
-
+    public Animator animator;
     public Transform player;
     //public Image healthBarFill; // Drag HealthBarFill here in Inspector
     public Slider HealthSlider;
@@ -33,7 +33,7 @@ public class Trainer : EnemyBase
         //fixedZZ = transform.position.z;
         currentHealth = maxHealth;
         HealthSlider.value = currentHealth / maxHealth;
-
+        animator = GetComponent<Animator>();
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -82,7 +82,12 @@ public class Trainer : EnemyBase
             ThrowBombsAtPlayer();
             throwTime = Time.time;
         }
-
+        if (animator != null)
+        {
+            Vector2 flatMoveDirection = new Vector2(moveDirection.x, moveDirection.z);
+            float speed = flatMoveDirection.magnitude;
+            animator.SetFloat("Speed", speed);
+        }
     }
     private void FixedUpdate()
     {
@@ -91,6 +96,12 @@ public class Trainer : EnemyBase
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
             float angle = Mathf.Atan2(moveDirection.z, moveDirection.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, -angle + 90f, 0f);
+
+            animator.SetFloat("Speed", moveDirection.magnitude);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0f);
         }
     }
 
