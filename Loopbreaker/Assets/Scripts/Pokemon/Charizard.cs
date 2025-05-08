@@ -12,6 +12,8 @@ public class Charizard : EnemyBase
 
     //public Image healthBarFill; // Drag HealthBarFill here in Inspector
     public Slider HealthSlider;
+
+    public Trainer trainerSwitcher;
     protected override void Start()
     {
         base.Start();
@@ -75,7 +77,10 @@ public class Charizard : EnemyBase
         FindObjectOfType<SceneBossManager>()?.RegisterBossDefeat();
         gameObject.SetActive(false);
         //Destroy(gameObject);
-
+        if (trainerSwitcher != null)
+        {
+            trainerSwitcher.SwitchToThrowing();
+        }
     }
 
 }

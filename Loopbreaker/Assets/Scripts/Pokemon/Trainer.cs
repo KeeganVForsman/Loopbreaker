@@ -21,7 +21,9 @@ public class Trainer : EnemyBase
     public float throwTime = 0f;
     public float maxHealth = 100;
     public float currentHealth;
+    public bool isThrowing = false;
 
+    public Transform player;
     //public Image healthBarFill; // Drag HealthBarFill here in Inspector
     public Slider HealthSlider;
     protected override void Start()
@@ -31,6 +33,12 @@ public class Trainer : EnemyBase
         //fixedZZ = transform.position.z;
         currentHealth = maxHealth;
         HealthSlider.value = currentHealth / maxHealth;
+
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
     }
     protected override void Update()
     {
@@ -69,6 +77,11 @@ public class Trainer : EnemyBase
             ThrowBombs();
             throwTime = Time.time;
         }
+        if (isThrowing && Time.time - throwTime >= throwcoolDown)
+        {
+            ThrowBombsAtPlayer();
+            throwTime = Time.time;
+        }
 
     }
     private void FixedUpdate()
@@ -90,6 +103,7 @@ public class Trainer : EnemyBase
     {
         Vector2 direction = (targetPos - selfPos).normalized;
         
+        
         moveDirection = direction.normalized;
 
     }
@@ -107,6 +121,20 @@ public class Trainer : EnemyBase
         {
             Vector3 directionToPlayer = (player.position - throwPoint.position).normalized;
             bombRB.velocity = directionToPlayer * throwForce;
+        }
+    }
+    public void ThrowBombsAtPlayer()
+    {
+        GameObject bomb = Instantiate(bombPrefab, throwPoint.position, throwPoint.rotation);
+        Rigidbody bombRB = bomb.GetComponent<Rigidbody>();
+        if (bombRB != null)
+        {
+            Vector3 directionToPlayer = (player.position - throwPoint.position).normalized;
+
+            float spreadAngle = Random.Range(-15f, 15f);
+            Quaternion spreadRotation = Quaternion.Euler(0, spreadAngle, 0);
+            Vector3 randomDirection = spreadRotation * directionToPlayer;
+            bombRB.velocity = randomDirection * throwForce;
         }
     }
     public void TakeDamage(float amount)
@@ -133,5 +161,11 @@ public class Trainer : EnemyBase
         gameObject.SetActive(false);
         //Destroy(gameObject);
 
+    }
+
+    public void SwitchToThrowing()
+    {
+        isThrowing = true;
+        Debug.Log(gameObject.name + " is now throwing bombs");
     }
 }
