@@ -80,6 +80,7 @@ public class Charizard : EnemyBase
         if (trainerSwitcher != null)
         {
             trainerSwitcher.SwitchToThrowing();
+
         }
     }
 

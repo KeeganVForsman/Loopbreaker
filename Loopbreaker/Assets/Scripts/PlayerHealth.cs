@@ -5,7 +5,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 100;
     public float currentHealth;
-    
+    public Image healthImage;
+
     //public Image healthBarFill; // Drag HealthBarFill here in Inspector
     public Slider HealthSlider;
     void Start()
@@ -13,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         UpdateHealthUI();
     }
+    
 
     public void TakeDamage(float amount)
     {
@@ -29,8 +31,11 @@ public class PlayerHealth : MonoBehaviour
 
     void UpdateHealthUI()
     {
+        
+
         if (HealthSlider != null)
         {
+            
             HealthSlider.value = (float)currentHealth / maxHealth;
         }
     }
