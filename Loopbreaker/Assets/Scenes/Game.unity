@@ -6229,13 +6229,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642184175}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 2.8, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2082520732}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 90, z: 180}
 --- !u!1 &1646565950
 GameObject:
   m_ObjectHideFlags: 0
@@ -22392,9 +22392,9 @@ MonoBehaviour:
   attackRange: 3
   damage: 10
   attackCooldown: 0.3
-  hitboxPrefab: {fileID: 3568453326270181107, guid: b1783452f205a364590197c64486d930, type: 3}
+  hitboxPrefab: {fileID: 2786858744439487655, guid: e00ce2360bce6bb42a2ece201d725b65, type: 3}
   hitboxSpawnPoint: {fileID: 1642184176}
-  hitboxLifetime: 0.2
+  hitboxLifetime: 1
   hitstopDuration: 0.2
   smough: {fileID: 1070283197}
 --- !u!136 &2082520729
