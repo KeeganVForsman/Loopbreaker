@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 public class Trainer : EnemyBase
 {
     public GameObject hitboxPrefab;
@@ -133,6 +134,7 @@ public class Trainer : EnemyBase
             Vector3 directionToPlayer = (player.position - throwPoint.position).normalized;
             bombRB.velocity = directionToPlayer * throwForce;
         }
+        StartCoroutine(BounceEffect());
     }
     public void ThrowBombsAtPlayer()
     {
@@ -178,5 +180,28 @@ public class Trainer : EnemyBase
     {
         isThrowing = true;
         Debug.Log(gameObject.name + " is now throwing bombs");
+    }
+
+    private IEnumerator BounceEffect(float bounceHeight = 0.5f, float bounceDuration = 0.2f )
+    {
+        Vector3 originalPosition = transform.position;
+        Vector3 targetPosition = originalPosition + new Vector3(0, bounceHeight, 0);
+
+        float elapsedTime = 0f;
+        while (elapsedTime <bounceDuration/2f)
+        {
+            transform.position = Vector3.Lerp(originalPosition, targetPosition, (elapsedTime/(bounceDuration/2f)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        elapsedTime = 0f;
+        while (elapsedTime < bounceDuration/2f)
+        {
+            transform.position = Vector3.Lerp(targetPosition, originalPosition, (elapsedTime / (bounceDuration / 2f)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = originalPosition;
     }
 }
