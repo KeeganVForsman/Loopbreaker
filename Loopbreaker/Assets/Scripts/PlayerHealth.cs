@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -43,7 +44,8 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player Died");
-        // Add death logic here (disable movement, respawn, etc.)
+        
         Destroy(gameObject);
+        SceneManager.LoadScene("Death");
     }
 }

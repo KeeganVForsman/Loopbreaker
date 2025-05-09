@@ -159,6 +159,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   playerRadius: 0.5
+  playerVisuals: {fileID: 248952912584797474}
+  hurtbox: {fileID: 0}
 --- !u!95 &3591044047249578535
 Animator:
   serializedVersion: 5
@@ -598,6 +600,8 @@ MonoBehaviour:
   swingAngle: 180
   swingDuration: 0.2
   destroyAfterSwing: 0
+  lungeDistance: 1
+  lungeDuration: 0.1
 --- !u!1001 &1131842264753459315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -667,6 +671,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88d674a8e0775ba45917e9240f7e7cbf, type: 3}
+--- !u!1 &248952912584797474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 88d674a8e0775ba45917e9240f7e7cbf, type: 3}
+  m_PrefabInstance: {fileID: 1131842264753459315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &594376153877854104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 88d674a8e0775ba45917e9240f7e7cbf, type: 3}

@@ -70,7 +70,7 @@ public class GameFlowManager : MonoBehaviour
         else if (firstBossDefeated && currentScene == secondBoss)
         {
             Debug.Log("Both bosses defeated! Load end scene or victory screen.");
-            // SceneManager.LoadScene("VictoryScene"); // optional
+            SceneManager.LoadScene("Victory");
         }
         else
         {

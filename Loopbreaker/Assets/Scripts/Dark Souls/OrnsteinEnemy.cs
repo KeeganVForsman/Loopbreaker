@@ -12,7 +12,7 @@ public class OrnsteinEnemy : EnemyBase
     protected override void Start()
     {
         base.Start();
-        moveSpeed = 4f;
+        moveSpeed = 3.4f;
         damage = 25f;
         attackCooldown = 3f;
     }
@@ -25,6 +25,10 @@ public class OrnsteinEnemy : EnemyBase
 
     protected override void Attack()
     {
+
+        FlashEffect flash = GetComponent<FlashEffect>();
+        if (flash) flash.FlashWhite();
+
         base.Attack();
 
         if (hitboxPrefab && hitboxSpawnPoint)

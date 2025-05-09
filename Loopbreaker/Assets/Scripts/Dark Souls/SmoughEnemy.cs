@@ -12,7 +12,7 @@ public class SmoughEnemy : EnemyBase
     protected override void Start()
     {
         base.Start();
-        moveSpeed = 1f;
+        moveSpeed = 1.3f;
         damage = 25f;
         attackCooldown = 3f;
     }
@@ -25,6 +25,9 @@ public class SmoughEnemy : EnemyBase
 
     protected override void Attack()
     {
+        FlashEffect flash = GetComponent<FlashEffect>();
+        if (flash) flash.FlashWhite();
+
         base.Attack();
 
         if (hitboxPrefab && hitboxSpawnPoint)

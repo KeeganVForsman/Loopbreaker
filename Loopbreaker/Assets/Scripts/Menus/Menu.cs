@@ -25,6 +25,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void tut()
+    {
+        SceneManager.LoadScene(1);
+    }
+
 
 
     // Start is called before the first frame update
